@@ -25,7 +25,8 @@ const selectRole = () => {
                 addIntern();
                 break;
             case "finished":
-                console.log(team);
+                generateHTML();
+                console.log('Team profile generated successfully! Check dist folder for team.html file.')
                 break;
         }
     })
@@ -113,15 +114,82 @@ const addIntern = () => {
 
 const generateHTML = () => {
     fs.writeFileSync('./dist/team.html', `
-    
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            <title>Team Profile</title>
+        </head>
+        <body>
+            <div class="container-fluid bg-info">
+                <h1 class="text-center text-white">Team Profile</h1>
+            </div>
+            <div class="container py-5">
+                <div class="row col-12 d-flex justify-content-center">
     `);
     for (i=0; i<team.length; i++) {
-        fs.appendFileSync('./dist/team.html', `
-        
-        `);
+        switch (team[i].constructor.name) {
+            case "Manager":
+                fs.appendFileSync('./dist/team.html', `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <h3 class="card-title"> ${team[i].name}</h3>
+                                <h3 class="card-subtitle mb-2"> ${team[i].constructor.name}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Employee ID: ${team[i].id}</p>
+                                <p>Email: ${team[i].email}</p>
+                                <p>Office Number: ${team[i].officeNumber}</p>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                break;
+            case "Engineer":
+                fs.appendFileSync('./dist/team.html', `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <h3 class="card-title"> ${team[i].name}</h3>
+                                <h3 class="card-subtitle mb-2"> ${team[i].constructor.name}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Employee ID: ${team[i].id}</p>
+                                <p>Email: ${team[i].email}</p>
+                                <p>GitHub: ${team[i].github}</p>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                break;
+            case "Intern":
+                fs.appendFileSync('./dist/team.html', `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <h3 class="card-title"> ${team[i].name}</h3>
+                                <h3 class="card-subtitle mb-2"> ${team[i].constructor.name}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Employee ID: ${team[i].id}</p>
+                                <p>Email: ${team[i].email}</p>
+                                <p>School: ${team[i].school}</p>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                break;
+        }
     }
     fs.appendFileSync('./dist/team.html', `
-
+            </div>
+            </div>
+        </body>
+        </html>
     `);
 }
 
