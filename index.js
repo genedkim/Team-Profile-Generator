@@ -11,22 +11,22 @@ const selectRole = () => {
             type: "list",
             name: "role",
             message: "Please select the role of the employee you would like to add.",
-            choices: ["manager", "engineer", "intern", "finished"]
+            choices: ["Manager", "Engineer", "Intern", "Finished"]
         }
     ]).then((response) => {
         switch(response.role) {
-            case "manager":
+            case "Manager":
                 addManager();
                 break;
-            case "engineer":
+            case "Engineer":
                 addEngineer();
                 break;
-            case "intern":
+            case "Intern":
                 addIntern();
                 break;
-            case "finished":
+            case "Finished":
                 generateHTML();
-                console.log('Team profile generated successfully! Check dist folder for team.html file.')
+                console.log('Team profile generated successfully! Check ./dist folder for team.html file.')
                 break;
         }
     })
@@ -75,7 +75,7 @@ const addEngineer = () => {
         }, {
             type: "input",
             name: "github",
-            message: "Please enter the engineer's github URL."
+            message: "Please enter the engineer's github ID."
         }
         ]).then((response) => {
             let employee = new Engineer(response.name, response.id, response.email, response.github);
@@ -141,9 +141,9 @@ const generateHTML = () => {
                                 <h3 class="card-subtitle mb-2"> ${team[i].constructor.name}</h3>
                             </div>
                             <div class="card-body">
-                                <p>Employee ID: ${team[i].id}</p>
-                                <p>Email: ${team[i].email}</p>
-                                <p>Office Number: ${team[i].officeNumber}</p>
+                                <p><strong>Employee ID: </strong>${team[i].id}</p>
+                                <p><strong>Email: </strong><a href="mailto:${team[i].email}">${team[i].email}</a></p>
+                                <p><strong>Office Number: </strong>${team[i].officeNumber}</p>
                             </div>
                         </div>
                     </div>
@@ -158,9 +158,9 @@ const generateHTML = () => {
                                 <h3 class="card-subtitle mb-2"> ${team[i].constructor.name}</h3>
                             </div>
                             <div class="card-body">
-                                <p>Employee ID: ${team[i].id}</p>
-                                <p>Email: ${team[i].email}</p>
-                                <p>GitHub: ${team[i].github}</p>
+                                <p><strong>Employee ID: </strong>${team[i].id}</p>
+                                <p><strong>Email: </strong><a href="mailto:${team[i].email}">${team[i].email}</a></p>
+                                <p><strong>GitHub: </strong><a href="https://github.com/${team[i].github}">${team[i].github}</a></p>
                             </div>
                         </div>
                     </div>
@@ -175,9 +175,9 @@ const generateHTML = () => {
                                 <h3 class="card-subtitle mb-2"> ${team[i].constructor.name}</h3>
                             </div>
                             <div class="card-body">
-                                <p>Employee ID: ${team[i].id}</p>
-                                <p>Email: ${team[i].email}</p>
-                                <p>School: ${team[i].school}</p>
+                                <p><strong>Employee ID: </strong>${team[i].id}</p>
+                                <p><strong>Email: </strong><a href="mailto:${team[i].email}">${team[i].email}</a></p>
+                                <p><strong>School: </strong>${team[i].school}</p>
                             </div>
                         </div>
                     </div>
